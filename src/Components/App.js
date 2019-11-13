@@ -46,6 +46,7 @@ export default class extends Component {
     handleChange = (event, value) =>{
         if(this.state.tables_state !== value) {
             this.setState({
+                offset: 0,
                 tables_state: value,
             }, () => {
                 this.GetTables();
@@ -75,15 +76,15 @@ export default class extends Component {
                         onChange={this.handleChange}
                     />
                     <Container>
+                        {this.state.tables.map((table) => {
+                            return <BetTable key={table.id} table={table}/>
+                        })}
                         <Paginator
                             limit={this.state.limit}
                             offset={this.state.offset}
                             count={this.state.count}
                             handleClick={this.handleClick}
                         />
-                        {this.state.tables.map((table) => {
-                            return <BetTable key={table.id} table={table}/>
-                        })}
                     </Container>
                 </MuiThemeProvider>
             </Fragment>

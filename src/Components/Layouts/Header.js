@@ -5,8 +5,8 @@ import { AppBar, Toolbar, Tabs, Tab } from "@material-ui/core";
 export default class extends Component {
     render() {
         return (
-            <AppBar position={"static"}>
-                <Toolbar variant={"dense"}>
+            <AppBar position="static">
+                <Toolbar variant="dense">
                     <Tabs
                         value={this.props.value}
                         onChange={this.props.onChange}
