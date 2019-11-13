@@ -25,6 +25,7 @@ const styles = ({
     card: {
         marginTop: '10px',
         marginBottom: '10px',
+        overflowX: 'auto',
     },
     avatar: {
         fontSize: '12px',
@@ -80,6 +81,14 @@ class HigherOrderComponent extends Component {
                             {this.props.table.name}
                         </Typography>
                     }
+                    subheader={
+                        <Typography
+                            color={this.props.table.total_profit >= 0 ? 'primary' : 'secondary'}
+                            variant='subtitle2'
+                        >
+                            Profit: S/. { this.FormatNumbers(this.props.table.total_profit) }
+                        </Typography>
+                    }
                 />
                 <CardContent>
                     <Table size="small">
@@ -115,6 +124,7 @@ class HigherOrderComponent extends Component {
                                     <TableRow
                                         key={ row.id }
                                         hover={true}
+                                        selected={ row.state == 'current' }
                                     >
                                         <TableCell>{ row.iteration + 1 }</TableCell>
                                         <TableCell>{ this.GetMatch(row) }</TableCell>
