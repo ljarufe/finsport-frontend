@@ -124,7 +124,7 @@ class HigherOrderComponent extends Component {
                                     <TableRow
                                         key={ row.id }
                                         hover={true}
-                                        selected={ row.state == 'current' }
+                                        selected={ row.state === 'current' }
                                     >
                                         <TableCell>{ row.iteration + 1 }</TableCell>
                                         <TableCell>{ this.GetMatch(row) }</TableCell>
