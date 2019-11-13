@@ -23,7 +23,10 @@ export default class extends Component {
     }
 
     async GetTables() {
-        axios.get('http://127.0.0.1:8000/bettables/', {
+        const url = process.env.REACT_APP_API_URL + '/bettables/';
+        console.log(url);
+
+        axios.get(url, {
             params: {
                 state: this.state.tables_state,
                 offset: this.state.offset,
