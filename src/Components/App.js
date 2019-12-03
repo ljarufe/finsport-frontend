@@ -5,7 +5,7 @@ import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import axios from 'axios';
 
 import { Header } from "./Layouts";
-import { BetTable } from "./Tables";
+import { HeaderBetTable, BetTable } from "./Tables";
 import { Paginator } from "./Paginators";
 
 const theme = createMuiTheme();
@@ -24,18 +24,18 @@ export default class extends Component {
 
     async GetTables() {
         const url = process.env.REACT_APP_API_URL + '/bettables/';
-        console.log(url);
 
         axios.get(url, {
             params: {
                 state: this.state.tables_state,
                 offset: this.state.offset,
-            }
+            },
         })
             .then((res) => {
                 this.setState({
                     tables: res.data.results,
                     count: res.data.count,
+                    total: res.data.total,
                 });
             })
             .catch((error) => {
@@ -76,6 +76,10 @@ export default class extends Component {
                         onChange={this.handleChange}
                     />
                     <Container>
+                        <HeaderBetTable
+                            count={this.state.count}
+                            total={this.state.total}
+                        />
                         {this.state.tables.map((table) => {
                             return <BetTable key={table.id} table={table}/>
                         })}
