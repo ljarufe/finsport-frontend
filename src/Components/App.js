@@ -10,6 +10,8 @@ import { Paginator } from "./Paginators";
 
 const theme = createMuiTheme();
 
+axios.defaults.headers.common['Authorization'] = process.env.REACT_APP_AUTH_TOKEN;
+
 export default class extends Component {
     constructor(props) {
         super(props);
@@ -23,7 +25,7 @@ export default class extends Component {
     }
 
     async GetTables() {
-        const url = process.env.REACT_APP_API_URL + '/bettables/';
+        const url = process.env.REACT_APP_API_URL + '/bet/tables/';
 
         axios.get(url, {
             params: {
